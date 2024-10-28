@@ -2,8 +2,8 @@
 
 *Project for MAS419 Modeling and Simulation of Mechatronics Systems*
 
-<img src="fig1.png" alt="drawing" width="305"/>
-<img src="fig2.png" alt="drawing" width="300"/>
+<img src="fig1.png" alt="drawing" width="295"/>
+<img src="fig2.png" alt="drawing" width="290"/>
 
 ## Project Overview
 
