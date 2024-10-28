@@ -1,5 +1,9 @@
 # MAS419_robotArm
-Project for MAS419 Modeling and Simulation of Mechatronics Systems
+
+*Project for MAS419 Modeling and Simulation of Mechatronics Systems*
+
+<img src="fig1.png" alt="drawing" width="305"/>
+<img src="fig2.png" alt="drawing" width="300"/>
 
 ## Project Overview
 
