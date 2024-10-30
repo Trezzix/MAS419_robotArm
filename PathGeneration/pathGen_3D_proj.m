@@ -14,7 +14,7 @@ RZ = zeros(5,1);
 [TX,RX,matsize] = pathGen(5,t,x);
 [TY,RY,matsize] = pathGen(5,t,y);
 [TZ,RZ,matsize] = pathGen(5,t,z);
-print(matsize)
+%print(matsize)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 coeffx = TX\RX;
@@ -24,39 +24,39 @@ coeffz = TZ\RZ;
 ax = coeffx(1:5);
 bx = coeffx(6:9);
 cx = coeffx(10:13);
-dx = coeffx(14:17);
-ex = coeffx(18:22);
+dx = coeffx(14:18);
+%ex = coeffx(18:22);
 %y
 ay = coeffy(1:5);
 by = coeffy(6:9);
 cy = coeffy(10:13);
-dy = coeffy(14:17);
-ey = coeffy(18:22);
+dy = coeffy(14:18);
+% ey = coeffy(18:22);
 %z
 az = coeffz(1:5);
 bz = coeffz(6:9);
 cz = coeffz(10:13);
-dz = coeffz(14:17);
-ez = coeffz(18:22);
+dz = coeffz(14:18);
+% ez = coeffz(18:22);
 
 %x time sampling
 tsamp1x = linspace(t(1),t(2),100);
 tsamp2x = linspace(t(2),t(3),100);
 tsamp3x = linspace(t(3),t(4),100);
 tsamp4x = linspace(t(4),t(5),100);
-tsamp5x = linspace(t(5),t(6),100);
+% tsamp5x = linspace(t(5),t(6),100);
 %y
 tsamp1y = linspace(t(1),t(2),100);
 tsamp2y = linspace(t(2),t(3),100);
 tsamp3y = linspace(t(3),t(4),100);
 tsamp4y = linspace(t(4),t(5),100);
-tsamp5y = linspace(t(5),t(6),100);
+% tsamp5y = linspace(t(5),t(6),100);
 %z
 tsamp1z = linspace(t(1),t(2),100);
 tsamp2z = linspace(t(2),t(3),100);
 tsamp3z = linspace(t(3),t(4),100);
 tsamp4z = linspace(t(4),t(5),100);
-tsamp5z = linspace(t(5),t(6),100);
+% tsamp5z = linspace(t(5),t(6),100);
 
 
 
@@ -103,50 +103,75 @@ for i = 1:length(tsamp3x)
 end
 
 for i = 1:length(tsamp4x)
-     xsamp4(i) =     F3(tsamp4x(i))*   dx;
-    vxsamp4(i) =  F3Dot(tsamp4x(i))*   dx;
-    axsamp4(i) = F3DDot(tsamp4x(i))*   dx;
+     xsamp4(i) =     F4(tsamp4x(i))*   dx;
+    vxsamp4(i) =  F4Dot(tsamp4x(i))*   dx;
+    axsamp4(i) = F4DDot(tsamp4x(i))*   dx;
 
-     ysamp4(i) =     F3(tsamp4y(i))*   dy;
-    vysamp4(i) =  F3Dot(tsamp4y(i))*   dy;
-    aysamp4(i) = F3DDot(tsamp4y(i))*   dy;
+     ysamp4(i) =     F4(tsamp4y(i))*   dy;
+    vysamp4(i) =  F4Dot(tsamp4y(i))*   dy;
+    aysamp4(i) = F4DDot(tsamp4y(i))*   dy;
 
-     zsamp4(i) =     F3(tsamp4z(i))*   dz;
-    vzsamp4(i) =  F3Dot(tsamp4z(i))*   dz;
-    azsamp4(i) = F3DDot(tsamp4z(i))*   dz;
+     zsamp4(i) =     F4(tsamp4z(i))*   dz;
+    vzsamp4(i) =  F4Dot(tsamp4z(i))*   dz;
+    azsamp4(i) = F4DDot(tsamp4z(i))*   dz;
 end
 
-for i = 1:length(tsamp5x)
-     xsamp5(i) =     F4(tsamp5x(i))*   ex;
-    vxsamp5(i) =  F4Dot(tsamp5x(i))*   ex;
-    axsamp5(i) = F4DDot(tsamp5x(i))*   ex;
+% for i = 1:length(tsamp5x)
+%      xsamp5(i) =     F4(tsamp5x(i))*   ex;
+%     vxsamp5(i) =  F4Dot(tsamp5x(i))*   ex;
+%     axsamp5(i) = F4DDot(tsamp5x(i))*   ex;
+% 
+%      ysamp5(i) =     F4(tsamp5y(i))*   ey;
+%     vysamp5(i) =  F4Dot(tsamp5y(i))*   ey;
+%     aysamp5(i) = F4DDot(tsamp5y(i))*   ey;
+% 
+%      zsamp5(i) =     F4(tsamp5z(i))*   ez;
+%     vzsamp5(i) =  F4Dot(tsamp5z(i))*   ez;
+%     azsamp5(i) = F4DDot(tsamp5z(i))*   ez;
+% end
 
-     ysamp5(i) =     F4(tsamp5y(i))*   ey;
-    vysamp5(i) =  F4Dot(tsamp5y(i))*   ey;
-    aysamp5(i) = F4DDot(tsamp5y(i))*   ey;
-
-     zsamp5(i) =     F4(tsamp5z(i))*   ez;
-    vzsamp5(i) =  F4Dot(tsamp5z(i))*   ez;
-    azsamp5(i) = F4DDot(tsamp5z(i))*   ez;
-end
-
- plot(t,x,'o')
+ %plot(t,x,'o')
+ figure
+ plot3(x,y,z,'o')
  hold on
- plot(tsamp1,xsamp1,'--')
- plot(tsamp2,xsamp2,'--')
- plot(tsamp3,xsamp3,'--')
- plot(tsamp4,xsamp4,'--')
- plot(tsamp5,xsamp5,'--')
- 
+ plot3(xsamp1,ysamp1,zsamp1,'--')
+ plot3(xsamp2,ysamp2,zsamp2,'--')
+ plot3(xsamp3,ysamp3,zsamp3,'--')
+ plot3(xsamp4,ysamp4,zsamp4,'--')
+ % plot3(xsamp5,ysamp5,zsamp5,'--')
+ legend('Points','t1','t2','t3','t4')
+ title("position")
+ xlabel("X [m]")
+ ylabel("Y [m]")
+ zlabel("Z [m]")
 
  figure
- plot(tsamp1,vsamp1,'--')
+ %plot3(x,y,z,'o')
+ plot3(vxsamp1,vysamp1,vzsamp1,'--')
  hold on
- plot(tsamp2,vsamp2,'--')
- plot(tsamp3,vsamp3,'--')
- plot(tsamp1,asamp1,'.')
- plot(tsamp2,asamp2,'.')
- plot(tsamp3,asamp3,'.')
+ plot3(vxsamp2,vysamp2,vzsamp2,'--')
+ plot3(vxsamp3,vysamp3,vzsamp3,'--')
+ plot3(vxsamp4,vysamp4,vzsamp4,'--')
+ % plot3(vxsamp5,vysamp5,vzsamp5,'--')
+
+ plot3(axsamp1,aysamp1,azsamp1,'.')
+ plot3(axsamp2,aysamp2,azsamp2,'.')
+ plot3(axsamp3,aysamp3,azsamp3,'.')
+ plot3(axsamp4,aysamp4,azsamp4,'.')
+ % plot3(axsamp5,aysamp5,azsamp5,'.')
+ legend('vt1','vt2','vt3','vt4',...
+        'at1','at2','at3','at4')
+ title("Acceleration (.) and Velocity (--)")
+ xlabel("X [m/s] [m/s^2]")
+ ylabel("Y [m/s] [m/s^2]")
+ zlabel("Z [m/s] [m/s^2]")
+
+
+ %plot(tsamp1,asamp1,'.')
+ %plot(tsamp2,asamp2,'.')
+ %plot(tsamp3,asamp3,'.')
+
+
 
 function [LL,RR,matsize] = pathGen(pointNum,t,val) 
     matsize = 6 + (pointNum-2)*4;
