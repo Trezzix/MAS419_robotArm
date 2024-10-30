@@ -21,7 +21,7 @@ Models and relevant files for project
 ## Path Generation
 
 - 3D constant script
-- 2D variable script
+- 2D and 3D variable script
 
 ## TBA More
 
