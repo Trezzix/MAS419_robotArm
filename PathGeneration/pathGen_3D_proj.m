@@ -153,18 +153,24 @@ end
  plot3(vxsamp3,vysamp3,vzsamp3,'--')
  plot3(vxsamp4,vysamp4,vzsamp4,'--')
  % plot3(vxsamp5,vysamp5,vzsamp5,'--')
+ legend('vt1','vt2','vt3','vt4')
+ title("Velocity")
+ xlabel("X [m/s]")
+ ylabel("Y [m/s]")
+ zlabel("Z [m/s]")
 
+ figure
  plot3(axsamp1,aysamp1,azsamp1,'.')
+ hold on
  plot3(axsamp2,aysamp2,azsamp2,'.')
  plot3(axsamp3,aysamp3,azsamp3,'.')
  plot3(axsamp4,aysamp4,azsamp4,'.')
  % plot3(axsamp5,aysamp5,azsamp5,'.')
- legend('vt1','vt2','vt3','vt4',...
-        'at1','at2','at3','at4')
- title("Acceleration (.) and Velocity (--)")
- xlabel("X [m/s] [m/s^2]")
- ylabel("Y [m/s] [m/s^2]")
- zlabel("Z [m/s] [m/s^2]")
+ legend('at1','at2','at3','at4')
+ title("Acceleration")
+ xlabel("X [m/s^2]")
+ ylabel("Y [m/s^2]")
+ zlabel("Z [m/s^2]")
 
 
  %plot(tsamp1,asamp1,'.')
