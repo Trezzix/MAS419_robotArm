@@ -45,6 +45,7 @@ https://www.youtube.com/@DrSurajJaiswal
 
 ### Project supplement 2: Path generation for robot manipulator
 
+- From lecture videos by Mohammad Ali Poursina (not included in repo)
 - Path generation for 2-dimensional points
 - Not modular in this code, see pathGeneration folder in root directory
 
