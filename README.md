@@ -47,3 +47,8 @@ https://www.youtube.com/@DrSurajJaiswal
 
 - Path generation for 2-dimensional points
 - Not modular in this code, see pathGeneration folder in root directory
+
+### Project Supplement 3: Inverse kinematics (Hand of God)
+
+- Hand of God Simulink model
+- Rest were only hand written on whiteboard in physical class
