@@ -38,6 +38,13 @@ bz = coeffz(6:9);
 cz = coeffz(10:13);
 dz = coeffz(14:18);
 % ez = coeffz(18:22);
+save("coefficients_all.mat","ax","bx","cx","dx", ...
+                        "ay","by","cy","dy", ...
+                        "az","bz","cz","dz")
+
+save("coefficients_x.mat","ax","bx","cx","dx")
+save("coefficients_y.mat","ay","by","cy","dy")
+save("coefficients_z.mat","az","bz","cz","dz")
 
 %x time sampling
 tsamp1x = linspace(t(1),t(2),100);
