@@ -53,3 +53,21 @@ https://www.youtube.com/@DrSurajJaiswal
 
 - Hand of God Simulink model
 - Rest were only hand written on whiteboard in physical class
+
+## Importing from MATLAB to Simulink
+
+Importing the arrays from MATLAB to simulink can be done in multiple ways, 
+the chosen method for this project goes as follows:
+
+1) Navigate to initializer script: \
+Modeling (ribbon) $\rightarrow$ Design $\rightarrow$ Property Inspector 
+$\rightarrow$ Click somewhere on the model with no component so nothing 
+is selected $\rightarrow$ Callbacks $\rightarrow$ Switch to InitFcn 
+$\rightarrow$ Write initializer function
+
+2) Example for script to run matlab code:
+```matlab
+cwd = pwd;
+cd('../otherFolder')
+run('exampleScript.m')
+```

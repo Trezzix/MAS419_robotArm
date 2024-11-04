@@ -3,6 +3,7 @@ x = [2000e-3 2000e-3 1600e-3 1600e-3 2000e-3]; %m
 y = [500e-3 -500e-3 500e-3 0 500e-3]; %m
 z = [1600e-3 1600e-3 900e-3 900e-3 1600e-3]; %m
 t = [0 1 2 3 4]; %s, unsure how this is found
+enablePlotting = false; % Change this to toggle plotting
 
 TX = zeros(5,5);
 RX = zeros(5,1);
@@ -38,13 +39,19 @@ bz = coeffz(6:9);
 cz = coeffz(10:13);
 dz = coeffz(14:18);
 % ez = coeffz(18:22);
-save("coefficients_all.mat","ax","bx","cx","dx", ...
-                        "ay","by","cy","dy", ...
-                        "az","bz","cz","dz")
+% save("coefficients_all.mat","ax","bx","cx","dx", ...
+%                         "ay","by","cy","dy", ...
+%                         "az","bz","cz","dz")
 
-save("coefficients_x.mat","coeffx")
-save("coefficients_y.mat","coeffy")
-save("coefficients_z.mat","coeffz")
+% save("coefficients_x.mat","coeffx")
+% save("coefficients_y.mat","coeffy")
+% save("coefficients_z.mat","coeffz")
+
+% step = 1e-4;
+% time = t(1) : step : t(end);
+% coeffData.coeffs = [coeffx, coeffy, coeffz];
+% coeffData.dummyTime = time;
+% save("coefficients.mat","coeffData")
 
 %x time sampling
 tsamp1x = linspace(t(1),t(2),100);
@@ -137,53 +144,54 @@ end
 %     azsamp5(i) = F4DDot(tsamp5z(i))*   ez;
 % end
 
- %plot(t,x,'o')
- figure
- plot3(x,y,z,'o')
- hold on
- plot3(xsamp1,ysamp1,zsamp1,'--')
- plot3(xsamp2,ysamp2,zsamp2,'--')
- plot3(xsamp3,ysamp3,zsamp3,'--')
- plot3(xsamp4,ysamp4,zsamp4,'--')
- % plot3(xsamp5,ysamp5,zsamp5,'--')
- legend('Points','t1','t2','t3','t4')
- title("position")
- xlabel("X [m]")
- ylabel("Y [m]")
- zlabel("Z [m]")
-
- figure
- %plot3(x,y,z,'o')
- plot3(vxsamp1,vysamp1,vzsamp1,'--')
- hold on
- plot3(vxsamp2,vysamp2,vzsamp2,'--')
- plot3(vxsamp3,vysamp3,vzsamp3,'--')
- plot3(vxsamp4,vysamp4,vzsamp4,'--')
- % plot3(vxsamp5,vysamp5,vzsamp5,'--')
- legend('vt1','vt2','vt3','vt4')
- title("Velocity")
- xlabel("X [m/s]")
- ylabel("Y [m/s]")
- zlabel("Z [m/s]")
-
- figure
- plot3(axsamp1,aysamp1,azsamp1,'.')
- hold on
- plot3(axsamp2,aysamp2,azsamp2,'.')
- plot3(axsamp3,aysamp3,azsamp3,'.')
- plot3(axsamp4,aysamp4,azsamp4,'.')
- % plot3(axsamp5,aysamp5,azsamp5,'.')
- legend('at1','at2','at3','at4')
- title("Acceleration")
- xlabel("X [m/s^2]")
- ylabel("Y [m/s^2]")
- zlabel("Z [m/s^2]")
-
-
- %plot(tsamp1,asamp1,'.')
- %plot(tsamp2,asamp2,'.')
- %plot(tsamp3,asamp3,'.')
-
+if enablePlotting
+    %plot(t,x,'o')
+    figure
+    plot3(x,y,z,'o')
+    hold on
+    plot3(xsamp1,ysamp1,zsamp1,'--')
+    plot3(xsamp2,ysamp2,zsamp2,'--')
+    plot3(xsamp3,ysamp3,zsamp3,'--')
+    plot3(xsamp4,ysamp4,zsamp4,'--')
+    % plot3(xsamp5,ysamp5,zsamp5,'--')
+    legend('Points','t1','t2','t3','t4')
+    title("position")
+    xlabel("X [m]")
+    ylabel("Y [m]")
+    zlabel("Z [m]")
+    
+    figure
+    %plot3(x,y,z,'o')
+    plot3(vxsamp1,vysamp1,vzsamp1,'--')
+    hold on
+    plot3(vxsamp2,vysamp2,vzsamp2,'--')
+    plot3(vxsamp3,vysamp3,vzsamp3,'--')
+    plot3(vxsamp4,vysamp4,vzsamp4,'--')
+    % plot3(vxsamp5,vysamp5,vzsamp5,'--')
+    legend('vt1','vt2','vt3','vt4')
+    title("Velocity")
+    xlabel("X [m/s]")
+    ylabel("Y [m/s]")
+    zlabel("Z [m/s]")
+    
+    figure
+    plot3(axsamp1,aysamp1,azsamp1,'.')
+    hold on
+    plot3(axsamp2,aysamp2,azsamp2,'.')
+    plot3(axsamp3,aysamp3,azsamp3,'.')
+    plot3(axsamp4,aysamp4,azsamp4,'.')
+    % plot3(axsamp5,aysamp5,azsamp5,'.')
+    legend('at1','at2','at3','at4')
+    title("Acceleration")
+    xlabel("X [m/s^2]")
+    ylabel("Y [m/s^2]")
+    zlabel("Z [m/s^2]")
+    
+    
+    %plot(tsamp1,asamp1,'.')
+    %plot(tsamp2,asamp2,'.')
+    %plot(tsamp3,asamp3,'.')
+end
 
 
 function [LL,RR,matsize] = pathGen(pointNum,t,val) 
