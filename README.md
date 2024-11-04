@@ -1,10 +1,8 @@
 # MAS419 Project: Robot Arm
 
 *Project for the MSc. course MAS419 Modeling and Simulation of Mechatronics Systems*
-<p float="left">
-<img src="Figures/fig1.png" alt="drawing" width="300"/>
-<img src="Figures/fig2.png" alt="drawing" width="295"/>
-</p>
+
+<img src="Figures/frontPage.png" alt="drawing" width="400"/>
 
 ## Project Overview
 
