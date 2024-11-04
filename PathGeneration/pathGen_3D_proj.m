@@ -12,10 +12,10 @@ RY = zeros(5,1);
 TZ = zeros(14,14);
 RZ = zeros(5,1);
 
-[TX,RX,matsize] = pathGen(5,t,x);
-[TY,RY,matsize] = pathGen(5,t,y);
-[TZ,RZ,matsize] = pathGen(5,t,z);
-%print(matsize)
+[TX,RX,matsize] = pathGen(t,x);
+[TY,RY,matsize] = pathGen(t,y);
+[TZ,RZ,matsize] = pathGen(t,z);
+%matsize
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 coeffx = TX\RX;
@@ -194,7 +194,11 @@ if enablePlotting
 end
 
 
-function [LL,RR,matsize] = pathGen(pointNum,t,val) 
+function [LL,RR,matsize] = pathGen(t,val) 
+    if (length(t) ~= length(val))
+        error("Array lengths of position and time do not match")
+    end
+    pointNum = length(t);
     matsize = 6 + (pointNum-2)*4;
     LL = zeros(matsize, matsize);
     RR = zeros(matsize,1);
