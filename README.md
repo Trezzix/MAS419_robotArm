@@ -52,7 +52,7 @@ https://www.youtube.com/@DrSurajJaiswal
 - Hand of God Simulink model
 - Rest were only hand written on whiteboard in physical class
 
-## Importing from MATLAB to Simulink
+## Importing MATLAB *(.m)* to Simulink
 
 Importing the arrays from MATLAB to simulink can be done in multiple ways, 
 the chosen method for this project goes as follows:
@@ -69,3 +69,31 @@ cwd = pwd;
 cd('../otherFolder')
 run('exampleScript.m')
 ```
+
+## Importing workspace *(.mat)* to Simulink
+Importing the arrays saved in a workspace file can also be done multiple
+ways. Previous version/commit of FD model used a constant block with which 
+worked but had performance issues. Increased performance with InitFcn and 
+"From Workspace" block:
+
+1) Load the workspace in initializer script: \
+Modeling (ribbon) $\rightarrow$ Design $\rightarrow$ Property Inspector 
+$\rightarrow$ Click somewhere on the model with no component so nothing 
+is selected $\rightarrow$ Callbacks $\rightarrow$ Switch to InitFcn 
+$\rightarrow$ Write initializer function \
+```matlab
+load('workspaceName.mat')
+```
+
+2) If needed: Process data so it can be used directly into the "From 
+Workspace" blocks. Needs to be time in first column, data in second. 
+Example from project:
+```matlab
+data = matrixWithRowSeparation';
+sig1  = data(:,[1  2]);
+sig2 = data(:,[1  3]);
+% ...
+```
+
+3) Simply use the variable in the "From Workspace" block. *(remember to 
+set constant sample time?)*
