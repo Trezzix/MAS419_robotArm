@@ -29,6 +29,8 @@ Models and relevant files for project
 
 <span style="color:grey"> - The project for renewable MSc. students is the wind turbine project</span>
 
+- In order to run the "Hand of God" model, make sure MATLAB is in correct folder (can be done by simply running PathGeneration/pathGen_3D_proj.m)
+
 - Recommended additional help for project:
 https://www.youtube.com/@DrSurajJaiswal
 
