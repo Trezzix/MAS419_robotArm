@@ -53,24 +53,41 @@ dz = coeffz(14:18);
 % coeffData.dummyTime = time;
 % save("coefficients.mat","coeffData")
 
-%x time sampling
-tsamp1x = linspace(t(1),t(2),100);
-tsamp2x = linspace(t(2),t(3),100);
-tsamp3x = linspace(t(3),t(4),100);
-tsamp4x = linspace(t(4),t(5),100);
-% tsamp5x = linspace(t(5),t(6),100);
-%y
-tsamp1y = linspace(t(1),t(2),100);
-tsamp2y = linspace(t(2),t(3),100);
-tsamp3y = linspace(t(3),t(4),100);
-tsamp4y = linspace(t(4),t(5),100);
-% tsamp5y = linspace(t(5),t(6),100);
-%z
-tsamp1z = linspace(t(1),t(2),100);
-tsamp2z = linspace(t(2),t(3),100);
-tsamp3z = linspace(t(3),t(4),100);
-tsamp4z = linspace(t(4),t(5),100);
-% tsamp5z = linspace(t(5),t(6),100);
+step = 1e-4;
+% x
+tsamp1x = t(1) : step : t(2);
+tsamp2x = t(2) : step : t(3);
+tsamp3x = t(3) : step : t(4);
+tsamp4x = t(4) : step : t(5);
+% y
+tsamp1y = t(1) : step : t(2);
+tsamp2y = t(2) : step : t(3);
+tsamp3y = t(3) : step : t(4);
+tsamp4y = t(4) : step : t(5);
+% z
+tsamp1z = t(1) : step : t(2);
+tsamp2z = t(2) : step : t(3);
+tsamp3z = t(3) : step : t(4);
+tsamp4z = t(4) : step : t(5);
+
+% %x time sampling
+% tsamp1x = linspace(t(1),t(2),1000);
+% tsamp2x = linspace(t(2),t(3),1000);
+% tsamp3x = linspace(t(3),t(4),1000);
+% tsamp4x = linspace(t(4),t(5),1000);
+% % tsamp5x = linspace(t(5),t(6),1000);
+% %y
+% tsamp1y = linspace(t(1),t(2),1000);
+% tsamp2y = linspace(t(2),t(3),1000);
+% tsamp3y = linspace(t(3),t(4),1000);
+% tsamp4y = linspace(t(4),t(5),1000);
+% % tsamp5y = linspace(t(5),t(6),100);
+% %z
+% tsamp1z = linspace(t(1),t(2),100);
+% tsamp2z = linspace(t(2),t(3),100);
+% tsamp3z = linspace(t(3),t(4),100);
+% tsamp4z = linspace(t(4),t(5),100);
+% % tsamp5z = linspace(t(5),t(6),100);
 
 
 
