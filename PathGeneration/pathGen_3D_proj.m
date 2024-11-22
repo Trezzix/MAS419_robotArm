@@ -2,7 +2,7 @@ clc; clear; close all;
 x = [2000e-3 2000e-3 1600e-3 1600e-3 2000e-3]; %m
 y = [500e-3 -500e-3 500e-3 0 500e-3]; %m
 z = [1600e-3 1600e-3 900e-3 900e-3 1600e-3]; %m
-t = [0 1 2 3 4]; %s, unsure how this is found
+t = [0 3 6 8 10]; %s, unsure how this is found
 enablePlotting = false; % Change this to toggle plotting
 
 TX = zeros(5,5);
