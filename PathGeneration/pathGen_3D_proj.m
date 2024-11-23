@@ -1,96 +1,52 @@
 clc; clear; close all; 
-x = [2000e-3 2000e-3 1600e-3 1600e-3 2000e-3]; %m
-y = [500e-3 -500e-3 500e-3 0 500e-3]; %m
-z = [1600e-3 1600e-3 900e-3 900e-3 1600e-3]; %m
-t = [0 3 6 8 10]; %s, unsure how this is found
+x = [2000 2000 1600 1600 2000]*1e-3; % [m]
+y = [500  -500  500    0  500]*1e-3; % [m]
+z = [1600 1600  900  900 1600]*1e-3; % [m]
+t = [0 3 6 8 10]; % Polynomial time intervals
 enablePlotting = true; % Change this to toggle plotting
-
-TX = zeros(5,5);
-RX = zeros(5,1);
-TY = zeros(14,14);
-RY = zeros(5,1);
-TZ = zeros(14,14);
-RZ = zeros(5,1);
 
 [TX,RX,matsize] = pathGen(t,x);
 [TY,RY,matsize] = pathGen(t,y);
 [TZ,RZ,matsize] = pathGen(t,z);
-%matsize
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 coeffx = TX\RX;
 coeffy = TY\RY;
 coeffz = TZ\RZ;
-%x coefficients
+% x coefficients
 ax = coeffx(1:5);
 bx = coeffx(6:9);
 cx = coeffx(10:13);
 dx = coeffx(14:18);
-%ex = coeffx(18:22);
-%y
+% y coefficients
 ay = coeffy(1:5);
 by = coeffy(6:9);
 cy = coeffy(10:13);
 dy = coeffy(14:18);
-% ey = coeffy(18:22);
-%z
+% z coefficients
 az = coeffz(1:5);
 bz = coeffz(6:9);
 cz = coeffz(10:13);
 dz = coeffz(14:18);
-% ez = coeffz(18:22);
-% save("coefficients_all.mat","ax","bx","cx","dx", ...
-%                         "ay","by","cy","dy", ...
-%                         "az","bz","cz","dz")
-
-% save("coefficients_x.mat","coeffx")
-% save("coefficients_y.mat","coeffy")
-% save("coefficients_z.mat","coeffz")
-
-% step = 1e-4;
-% time = t(1) : step : t(end);
-% coeffData.coeffs = [coeffx, coeffy, coeffz];
-% coeffData.dummyTime = time;
-% save("coefficients.mat","coeffData")
 
 step = 1e-4;
-% x
+% x Time Sampling
 tsamp1x = t(1) : step : t(2);
 tsamp2x = t(2) : step : t(3);
 tsamp3x = t(3) : step : t(4);
 tsamp4x = t(4) : step : t(5);
-% y
+% y Time Sampling
 tsamp1y = t(1) : step : t(2);
 tsamp2y = t(2) : step : t(3);
 tsamp3y = t(3) : step : t(4);
 tsamp4y = t(4) : step : t(5);
-% z
+% z Time Sampling
 tsamp1z = t(1) : step : t(2);
 tsamp2z = t(2) : step : t(3);
 tsamp3z = t(3) : step : t(4);
 tsamp4z = t(4) : step : t(5);
 
-% %x time sampling
-% tsamp1x = linspace(t(1),t(2),1000);
-% tsamp2x = linspace(t(2),t(3),1000);
-% tsamp3x = linspace(t(3),t(4),1000);
-% tsamp4x = linspace(t(4),t(5),1000);
-% % tsamp5x = linspace(t(5),t(6),1000);
-% %y
-% tsamp1y = linspace(t(1),t(2),1000);
-% tsamp2y = linspace(t(2),t(3),1000);
-% tsamp3y = linspace(t(3),t(4),1000);
-% tsamp4y = linspace(t(4),t(5),1000);
-% % tsamp5y = linspace(t(5),t(6),100);
-% %z
-% tsamp1z = linspace(t(1),t(2),100);
-% tsamp2z = linspace(t(2),t(3),100);
-% tsamp3z = linspace(t(3),t(4),100);
-% tsamp4z = linspace(t(4),t(5),100);
-% % tsamp5z = linspace(t(5),t(6),100);
-
-
-
+    % Pos, Vel, Acc Sampling
 for i = 1:length(tsamp1x)
     xsamp1(i) =  F4(tsamp1x(i))*    ax;
     vxsamp1(i) = F4Dot(tsamp1x(i))* ax;
@@ -104,7 +60,6 @@ for i = 1:length(tsamp1x)
     vzsamp1(i) = F4Dot(tsamp1z(i))* az;
     azsamp1(i) = F4DDot(tsamp1z(i))*az;
 end
-
 for i = 1:length(tsamp2x)
     xsamp2(i) =  F3(tsamp2x(i))*    bx;
     vxsamp2(i) = F3Dot(tsamp2x(i))* bx;
@@ -118,7 +73,6 @@ for i = 1:length(tsamp2x)
     vzsamp2(i) =  F3Dot(tsamp2z(i))*  bz;
     azsamp2(i) = F3DDot(tsamp2z(i))*  bz;
 end
-
 for i = 1:length(tsamp3x)
      xsamp3(i) =     F3(tsamp3x(i))*   cx;
     vxsamp3(i) =  F3Dot(tsamp3x(i))*   cx;
@@ -132,7 +86,6 @@ for i = 1:length(tsamp3x)
     vzsamp3(i) =  F3Dot(tsamp3z(i))*   cz;
     azsamp3(i) = F3DDot(tsamp3z(i))*   cz;
 end
-
 for i = 1:length(tsamp4x)
      xsamp4(i) =     F4(tsamp4x(i))*   dx;
     vxsamp4(i) =  F4Dot(tsamp4x(i))*   dx;
@@ -147,24 +100,11 @@ for i = 1:length(tsamp4x)
     azsamp4(i) = F4DDot(tsamp4z(i))*   dz;
 end
 
-% for i = 1:length(tsamp5x)
-%      xsamp5(i) =     F4(tsamp5x(i))*   ex;
-%     vxsamp5(i) =  F4Dot(tsamp5x(i))*   ex;
-%     axsamp5(i) = F4DDot(tsamp5x(i))*   ex;
-% 
-%      ysamp5(i) =     F4(tsamp5y(i))*   ey;
-%     vysamp5(i) =  F4Dot(tsamp5y(i))*   ey;
-%     aysamp5(i) = F4DDot(tsamp5y(i))*   ey;
-% 
-%      zsamp5(i) =     F4(tsamp5z(i))*   ez;
-%     vzsamp5(i) =  F4Dot(tsamp5z(i))*   ez;
-%     azsamp5(i) = F4DDot(tsamp5z(i))*   ez;
-% end
-
 if enablePlotting
-
+    % Line Width of all plots
     lW = 1.8;
-    %plot(t,x,'o')
+
+    % Position
     figure
     plot3(x,y,z,'ok', 'LineWidth', lW)
     hold on
@@ -172,10 +112,9 @@ if enablePlotting
     plot3(xsamp2,ysamp2,zsamp2, 'LineWidth',lW, 'Color','#EDB120')
     plot3(xsamp3,ysamp3,zsamp3, 'LineWidth',lW, 'Color','#99C164')
     plot3(xsamp4,ysamp4,zsamp4, 'LineWidth',lW, 'Color','#77BFFF')
-    % plot3(xsamp5,ysamp5,zsamp5,'--')
     legend('Points','$P_1(t)$','$P_2(t)$','$P_3(t)$','$P_4(t)$', ...
         'interpreter', 'latex')
-    set(gca, 'FontSize', 14); % Optional: Adjust axis font size
+    set(gca, 'FontSize', 14);
     lgd = legend;
     lgd.FontSize = 14;
     title("Position")
@@ -183,19 +122,17 @@ if enablePlotting
     ylabel("y [m]")
     zlabel("z [m]")
     
+    % Velocity
     figure
     subplot(1,2,1)
-    %plot3(x,y,z,'o')
     plot3(vxsamp1,vysamp1,vzsamp1, 'LineWidth',lW, 'Color','#D95319')
     hold on
     plot3(vxsamp2,vysamp2,vzsamp2, 'LineWidth',lW, 'Color','#EDB120')
     plot3(vxsamp3,vysamp3,vzsamp3, 'LineWidth',lW, 'Color','#99C164')
     plot3(vxsamp4,vysamp4,vzsamp4, 'LineWidth',lW, 'Color','#77BFFF')
-    % plot3(vxsamp5,vysamp5,vzsamp5,'--')
-    % legend('vt1','vt2','vt3','vt4')
     legend('$\dot{P}_1(t)$','$\dot{P}_2(t)$','$\dot{P}_3(t)$',...
         '$\dot{P}_4(t)$', 'interpreter', 'latex')
-    set(gca, 'FontSize', 14); % Optional: Adjust axis font size
+    set(gca, 'FontSize', 14);
     lgd = legend;
     lgd.FontSize = 14;
     title("Velocity")
@@ -203,33 +140,26 @@ if enablePlotting
     ylabel("y [m/s]")
     zlabel("z [m/s]")
     
-    % figure
+    % Acceleration
     subplot(1,2,2)
     plot3(axsamp1,aysamp1,azsamp1, 'LineWidth',lW, 'Color','#D95319')
     hold on
     plot3(axsamp2,aysamp2,azsamp2, 'LineWidth',lW, 'Color','#EDB120')
     plot3(axsamp3,aysamp3,azsamp3, 'LineWidth',lW, 'Color','#99C164')
     plot3(axsamp4,aysamp4,azsamp4, 'LineWidth',lW, 'Color','#77BFFF')
-    % plot3(axsamp5,aysamp5,azsamp5,'.')
-    % legend('at1','at2','at3','at4')
     legend('$\ddot{P}_1(t)$','$\ddot{P}_2(t)$','$\ddot{P}_3(t)$',...
         '$\ddot{P}_4(t)$', 'interpreter', 'latex')
-    set(gca, 'FontSize', 14); % Optional: Adjust axis font size
+    set(gca, 'FontSize', 14);
     lgd = legend;
     lgd.FontSize = 14;
     title("Acceleration")
     xlabel("x [m/s^2]")
     ylabel("y [m/s^2]")
     zlabel("z [m/s^2]")
-    
-    
-    %plot(tsamp1,asamp1,'.')
-    %plot(tsamp2,asamp2,'.')
-    %plot(tsamp3,asamp3,'.')
 end
 
 
-function [LL,RR,matsize] = pathGen(t,val) 
+function [LL,RR,matsize] = pathGen(t,val)
     if (length(t) ~= length(val))
         error("Array lengths of position and time do not match")
     end
@@ -241,8 +171,8 @@ function [LL,RR,matsize] = pathGen(t,val)
     m = 1;
     index = 1;
     LL(i,index:index+4) = F4(t(m));   RR(i) = val(m);   i=i+1; 
-    LL(i,index:index+4) = F4Dot(t(m));                i=i+1;
-    LL(i,index:index+4) = F4DDot(t(m));               i=i+1;
+    LL(i,index:index+4) = F4Dot(t(m));                  i=i+1;
+    LL(i,index:index+4) = F4DDot(t(m));                 i=i+1;
     m=m+1;
     LL(i,index:index+4) = F4(t(m));   RR(i) = val(m);   i=i+1;
     
@@ -290,7 +220,7 @@ function [LL,RR,index,i,m] = middleSec(LL,RR,pos,index,i,m,t,val)
         LL(i,index:index+4) = F4DDot(t(m));       LL(i,index+5:index+9) = -F4DDot(t(m)); i=i+1; 
         index = index + 5;
         m=m+1;
-    else %middle
+    else % middle
         LL(i,index:index+3) = F3(t(m));      RR(i) = val(m); i=i+1;
         LL(i,index:index+3) = F3(t(m));           LL(i,index+4:index+7) = -F3(t(m));     i=i+1; 
         LL(i,index:index+3) = F3Dot(t(m));        LL(i,index+4:index+7) = -F3Dot(t(m));  i=i+1; 
@@ -298,10 +228,6 @@ function [LL,RR,index,i,m] = middleSec(LL,RR,pos,index,i,m,t,val)
         index = index + 4;
         m=m+1;
     end
-    % LL(1,1:5) = F4(t(1));   RR(1) = x(1);
-    % LL(2,1:5) = F4Dot(t(1));
-    % LL(3,1:5) = F4DDot(t(1));
-    % LL(4,1:5) = F4(t(2));   RR(4) = x(2);
 end
 
 function [out] = F4(t) 
