@@ -3,7 +3,7 @@ x = [2000 2000 1600 1600 2000]*1e-3; % [m]
 y = [500  -500  500    0  500]*1e-3; % [m]
 z = [1600 1600  900  900 1600]*1e-3; % [m]
 t = [0 3 6 8 10]; % Polynomial time intervals
-enablePlotting = true; % Change this to toggle plotting
+enablePlotting = false; % Change this to toggle plotting
 
 [TX,RX,matsize] = pathGen(t,x);
 [TY,RY,matsize] = pathGen(t,y);
