@@ -3,7 +3,7 @@ x = [2000e-3 2000e-3 1600e-3 1600e-3 2000e-3]; %m
 y = [500e-3 -500e-3 500e-3 0 500e-3]; %m
 z = [1600e-3 1600e-3 900e-3 900e-3 1600e-3]; %m
 t = [0 3 6 8 10]; %s, unsure how this is found
-enablePlotting = false; % Change this to toggle plotting
+enablePlotting = true; % Change this to toggle plotting
 
 TX = zeros(5,5);
 RX = zeros(5,1);
@@ -162,47 +162,65 @@ end
 % end
 
 if enablePlotting
+
+    lW = 1.8;
     %plot(t,x,'o')
     figure
-    plot3(x,y,z,'o')
+    plot3(x,y,z,'ok', 'LineWidth', lW)
     hold on
-    plot3(xsamp1,ysamp1,zsamp1,'--')
-    plot3(xsamp2,ysamp2,zsamp2,'--')
-    plot3(xsamp3,ysamp3,zsamp3,'--')
-    plot3(xsamp4,ysamp4,zsamp4,'--')
+    plot3(xsamp1,ysamp1,zsamp1, 'LineWidth',lW, 'Color','#D95319')
+    plot3(xsamp2,ysamp2,zsamp2, 'LineWidth',lW, 'Color','#EDB120')
+    plot3(xsamp3,ysamp3,zsamp3, 'LineWidth',lW, 'Color','#99C164')
+    plot3(xsamp4,ysamp4,zsamp4, 'LineWidth',lW, 'Color','#77BFFF')
     % plot3(xsamp5,ysamp5,zsamp5,'--')
-    legend('Points','t1','t2','t3','t4')
-    title("position")
-    xlabel("X [m]")
-    ylabel("Y [m]")
-    zlabel("Z [m]")
+    legend('Points','$P_1(t)$','$P_2(t)$','$P_3(t)$','$P_4(t)$', ...
+        'interpreter', 'latex')
+    set(gca, 'FontSize', 14); % Optional: Adjust axis font size
+    lgd = legend;
+    lgd.FontSize = 14;
+    title("Position")
+    xlabel("x [m]")
+    ylabel("y [m]")
+    zlabel("z [m]")
     
     figure
+    subplot(1,2,1)
     %plot3(x,y,z,'o')
-    plot3(vxsamp1,vysamp1,vzsamp1,'--')
+    plot3(vxsamp1,vysamp1,vzsamp1, 'LineWidth',lW, 'Color','#D95319')
     hold on
-    plot3(vxsamp2,vysamp2,vzsamp2,'--')
-    plot3(vxsamp3,vysamp3,vzsamp3,'--')
-    plot3(vxsamp4,vysamp4,vzsamp4,'--')
+    plot3(vxsamp2,vysamp2,vzsamp2, 'LineWidth',lW, 'Color','#EDB120')
+    plot3(vxsamp3,vysamp3,vzsamp3, 'LineWidth',lW, 'Color','#99C164')
+    plot3(vxsamp4,vysamp4,vzsamp4, 'LineWidth',lW, 'Color','#77BFFF')
     % plot3(vxsamp5,vysamp5,vzsamp5,'--')
-    legend('vt1','vt2','vt3','vt4')
+    % legend('vt1','vt2','vt3','vt4')
+    legend('$\dot{P}_1(t)$','$\dot{P}_2(t)$','$\dot{P}_3(t)$',...
+        '$\dot{P}_4(t)$', 'interpreter', 'latex')
+    set(gca, 'FontSize', 14); % Optional: Adjust axis font size
+    lgd = legend;
+    lgd.FontSize = 14;
     title("Velocity")
-    xlabel("X [m/s]")
-    ylabel("Y [m/s]")
-    zlabel("Z [m/s]")
+    xlabel("x [m/s]")
+    ylabel("y [m/s]")
+    zlabel("z [m/s]")
     
-    figure
-    plot3(axsamp1,aysamp1,azsamp1,'.')
+    % figure
+    subplot(1,2,2)
+    plot3(axsamp1,aysamp1,azsamp1, 'LineWidth',lW, 'Color','#D95319')
     hold on
-    plot3(axsamp2,aysamp2,azsamp2,'.')
-    plot3(axsamp3,aysamp3,azsamp3,'.')
-    plot3(axsamp4,aysamp4,azsamp4,'.')
+    plot3(axsamp2,aysamp2,azsamp2, 'LineWidth',lW, 'Color','#EDB120')
+    plot3(axsamp3,aysamp3,azsamp3, 'LineWidth',lW, 'Color','#99C164')
+    plot3(axsamp4,aysamp4,azsamp4, 'LineWidth',lW, 'Color','#77BFFF')
     % plot3(axsamp5,aysamp5,azsamp5,'.')
-    legend('at1','at2','at3','at4')
+    % legend('at1','at2','at3','at4')
+    legend('$\ddot{P}_1(t)$','$\ddot{P}_2(t)$','$\ddot{P}_3(t)$',...
+        '$\ddot{P}_4(t)$', 'interpreter', 'latex')
+    set(gca, 'FontSize', 14); % Optional: Adjust axis font size
+    lgd = legend;
+    lgd.FontSize = 14;
     title("Acceleration")
-    xlabel("X [m/s^2]")
-    ylabel("Y [m/s^2]")
-    zlabel("Z [m/s^2]")
+    xlabel("x [m/s^2]")
+    ylabel("y [m/s^2]")
+    zlabel("z [m/s^2]")
     
     
     %plot(tsamp1,asamp1,'.')
