@@ -3,25 +3,23 @@
 *Project for the MSc. course MAS419 Modeling and Simulation of Mechatronics Systems*
 
 <img src="Figures/frontPage.png" alt="drawing" width="400"/>
+<img src="Figures/sideView1.png" alt="drawing" height="180"/>
+<img src="Figures/sideView2.png" alt="drawing" height="180"/>
+
 
 ## Project Overview
 
-The project is mainly divided into four parts:
+The project consists of three parts:
 
-1) Simscape modeling of the robot in Simulink
-2) Path Generation in MATLAB
-3) Inverse Kinematics
-4) Controller Design
-
-## Simscape Modeling
-Models and relevant files for project
-
-## Path Generation
-
-- 3D constant script
-- 2D and 3D variable script
-
-## TBA More
+1) Path Generation in MATLAB
+    - "PathGeneration/pathGen_3D_proj.m"
+3) Kinematics Model
+    - "SimscapeModeling/RobotArm_HandOfGod.slx"
+4) Forward Dynamics Model and Control
+    - "SimscapeModeling/RobotArm_ForwardDynamics.slx"
+---
+- The two other files in "SimscapeModeling" are from export/import between the two models
+- Videos demonstrating the movement of initial and final tuning are found under "Videos"
 
 ## General Information
 
