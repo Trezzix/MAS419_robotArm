@@ -2,7 +2,7 @@
 
 *Project for the MSc. course MAS419 Modeling and Simulation of Mechatronics Systems*
 
-<img src="Figures/frontPage.png" alt="drawing" width="400"/>
+<img src="Figures/frontPage.png" alt="drawing" width="400"/> \
 <img src="Figures/sideView1.png" alt="drawing" height="180"/>
 <img src="Figures/sideView2.png" alt="drawing" height="180"/>
 
